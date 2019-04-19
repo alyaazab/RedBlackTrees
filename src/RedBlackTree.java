@@ -4,10 +4,6 @@ public class RedBlackTree {
     private Node root;
     private int treeSize = 0;
 
-
-
-    private int treeHeight = 0;
-
     public RedBlackTree() {
         nil.setColor(Node.Color.BLACK);
         this.root = nil;
