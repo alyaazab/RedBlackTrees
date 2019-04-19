@@ -2,10 +2,10 @@ public class Node {
 
 
     private String key;
-    private Node left = null;
-    private Node right = null;
-    private Node parent = null;
-    private Color color = null;
+    private Node left;
+    private Node right;
+    private Node parent;
+    private Color color;
 
     public enum Color {
         RED,
@@ -23,10 +23,6 @@ public class Node {
 
     public String getKey() {
         return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
     }
 
     public Node getLeft() {

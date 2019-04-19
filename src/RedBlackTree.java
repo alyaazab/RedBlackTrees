@@ -3,18 +3,10 @@ public class RedBlackTree {
     private Node nil = new Node("xyz");
     private Node root;
     private int treeSize = 0;
+
+
+
     private int treeHeight = 0;
-
-    public Node getNil() {
-        return nil;
-    }
-    public int getTreeSize() {
-        return treeSize;
-    }
-
-    public void setTreeSize(int treeSize) {
-        this.treeSize = treeSize;
-    }
 
     public RedBlackTree() {
         nil.setColor(Node.Color.BLACK);
@@ -310,24 +302,7 @@ public class RedBlackTree {
         return root;
     }
 
-    public void setRoot(Node root) {
-        this.root = root;
-    }
 
-    void printLevelOrder()
-    {
-        int h = height(root);
-        int i;
-        for (i=1; i<=h; i++)
-        {
-            printGivenLevel(root, i);
-            System.out.println();
-        }
-    }
-
-    /* Compute the "height" of a tree -- the number of
-    nodes along the longest path from the root node
-    down to the farthest leaf node.*/
     int height(Node root)
     {
         if (root == nil)
@@ -335,17 +310,16 @@ public class RedBlackTree {
         else
         {
             /* compute  height of each subtree */
-            int lheight = height(root.getLeft());
-            int rheight = height(root.getRight());
+            int leftHeight = height(root.getLeft());
+            int rightHeight = height(root.getRight());
 
             /* use the larger one */
-            if (lheight > rheight)
-                return(lheight+1);
-            else return(rheight+1);
+            if (leftHeight > rightHeight)
+                return(leftHeight + 1);
+            else return(rightHeight + 1);
         }
     }
 
-    /* Print nodes at the given level */
     void printGivenLevel (Node root ,int level)
     {
         if (root == nil)
@@ -357,6 +331,22 @@ public class RedBlackTree {
             printGivenLevel(root.getLeft(), level-1);
             printGivenLevel(root.getRight(), level-1);
         }
+    }
+
+    public int getTreeHeight() {
+        return height(this.root);
+    }
+
+
+    public Node getNil() {
+        return nil;
+    }
+    public int getTreeSize() {
+        return treeSize;
+    }
+
+    public void setTreeSize(int treeSize) {
+        this.treeSize = treeSize;
     }
 
 }

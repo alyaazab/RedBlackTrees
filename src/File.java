@@ -1,7 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class File {
 
@@ -27,4 +24,30 @@ public class File {
 
         return redBlackTree;
     }
+
+    public static void writeToFile(RedBlackTree redBlackTree){
+        BufferedWriter writer;
+        try {
+            writer = new BufferedWriter(new FileWriter("dictionary.txt"));
+            writeTreeToFile(writer, redBlackTree, redBlackTree.getRoot());
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static void writeTreeToFile(BufferedWriter writer, RedBlackTree redBlackTree, Node node) {
+        if (node != redBlackTree.getNil()) {
+            writeTreeToFile(writer, redBlackTree, node.getLeft());
+            try {
+                writer.write(node.getKey() + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            writeTreeToFile(writer, redBlackTree, node.getRight());
+        }
+    }
+
 }
